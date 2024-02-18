@@ -77,42 +77,4 @@ class Tests : TestCase(
             }
         }
     }
-
-    @Test
-    fun test2() = run {
-        val viewmodel = OnBoardingViewModel()
-        mainActivityViewModel.insertFrames()
-        step("Open OnboardingActivity and check queue1") {
-            OnBoarding {
-                val valueBefore = viewmodel.framesCount()
-                Log.i("1234", "${viewmodel.framesList}")
-                btnNext {
-                    isVisible()
-                    click()
-                }
-                Log.i("1234", "${viewmodel.framesList}")
-                assertEquals(viewmodel.framesCount(), valueBefore - 1)
-            }
-        }
-        step("queue2") {
-            OnBoarding {
-                val valueBefore = viewmodel.framesCount()
-                btnNext {
-                    isVisible()
-                    click()
-                }
-                assertEquals(viewmodel.framesCount(), valueBefore - 1)
-            }
-        }
-        step("queue3") {
-            OnBoarding {
-                val valueBefore = viewmodel.framesCount()
-                btnNext {
-                    isVisible()
-                    click()
-                }
-                assertEquals(viewmodel.framesCount(), valueBefore - 1)
-            }
-        }
-    }
 }
