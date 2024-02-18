@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Testandroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#0560FA</item>
+        <item name="colorSecondary">#EC8000</item>
+    </style>
+
+    <style name="SplashScreen" parent="Base.Theme.Testandroid">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
+
+    <style name="Theme.Testandroid" parent="Base.Theme.Testandroid" />
+</resources>

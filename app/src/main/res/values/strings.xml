@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">testandroid</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="queue_1_1_description">Quick Delivery At Your Doorstep</string>
+    <string name="queue_1_2_description">Enjoy quick pick-up and delivery to your destination</string>
+    <string name="queue_2_1_description">Flexible payment</string>
+    <string name="queue_3_1_description">Real-time Tracking</string>
+    <string name="queue_3_2_description">Track your packages/items from the comfort of your home till final destination</string>
+    <string name="queue_2_2_description">Different modes of payment either before and after delivery without stress</string>
+</resources>
