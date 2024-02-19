@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:launchMode="singleTask"
-            android:name=".activities.AuthActivity"
+            android:name=".activities.SignInActivity"
             android:exported="true">
         </activity>
     </application>

@@ -55,6 +55,8 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
                 activity?.finish()
             }
         }
+
+
         return binding.root
     }
 

@@ -2,7 +2,6 @@ package com.github.krxwl.testandroid.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.preferences.core.edit
@@ -14,11 +13,9 @@ import com.github.krxwl.testandroid.R
 import com.github.krxwl.testandroid.database.Repository
 import com.github.krxwl.testandroid.entities.Frame
 import com.github.krxwl.testandroid.fragments.MainFragment
-import com.github.krxwl.testandroid.fragments.OnBoardingFragment
 import com.github.krxwl.testandroid.viewmodels.MainViewModel
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
-import io.ktor.websocket.WebSocketDeflateExtension.Companion.install
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, OnBoardingActivity::class.java))
             }
             if (viewModel.getIsActive() == false){
-                startActivity(Intent(this, AuthActivity::class.java))
+                startActivity(Intent(this, SignInActivity::class.java))
             }
         }
 
@@ -114,7 +111,7 @@ class MainActivity : AppCompatActivity() {
 
         onBoardingShow.asLiveData().observe(this) { isShow ->
             if (isShow) {
-                startActivity(Intent(this, AuthActivity::class.java))
+                startActivity(Intent(this, SignInActivity::class.java))
             }
         }
     }

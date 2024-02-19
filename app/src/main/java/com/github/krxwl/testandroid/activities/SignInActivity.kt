@@ -1,17 +1,16 @@
 package com.github.krxwl.testandroid.activities
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.github.krxwl.testandroid.R
-import com.github.krxwl.testandroid.databinding.AuthActivityBinding
+import com.github.krxwl.testandroid.databinding.SignInActivityBinding
 import com.github.krxwl.testandroid.fragments.HolderFragment
 
-class AuthActivity : AppCompatActivity() {
-    lateinit var binding: AuthActivityBinding
+class SignInActivity : AppCompatActivity() {
+    lateinit var binding: SignInActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = AuthActivityBinding.inflate(layoutInflater)
+        binding = SignInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.auth_activity)
