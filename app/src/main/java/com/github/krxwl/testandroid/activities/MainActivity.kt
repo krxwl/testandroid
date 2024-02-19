@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, OnBoardingActivity::class.java))
             }
         }
-        setTheme(R.style.Base_Theme_Testandroid)
     }
 
     companion object {

@@ -90,6 +90,7 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
         binding.propertyTextview.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
         binding.onboardingImage.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
     }
+
     suspend fun checkedOnBoard() {
         requireContext().dataStore.edit { preferences ->
             preferences[Prefs.ONBOARDING_KEY] = true
