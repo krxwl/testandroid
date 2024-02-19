@@ -119,7 +119,7 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
 
     suspend fun saveSlide() {
         requireContext().dataStore.edit { preferences ->
-            preferences[Prefs.ONBOARDING_SLIDE] = onBoardingViewModel.getCurrentFrame()
+            preferences[ONBOARDING_SLIDE] = onBoardingViewModel.getCurrentFrame()
         }
     }
 
