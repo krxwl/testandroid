@@ -12,22 +12,12 @@ import com.github.krxwl.testandroid.Prefs.Companion.dataStore
 import com.github.krxwl.testandroid.R
 import com.github.krxwl.testandroid.database.Repository
 import com.github.krxwl.testandroid.entities.Frame
-import com.github.krxwl.testandroid.fragments.MainFragment
 import com.github.krxwl.testandroid.viewmodels.MainViewModel
-import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    val supabase = createSupabaseClient(
-        supabaseUrl = "https://althgjdtmsvhoswaazdp.supabase.co",
-        supabaseKey = "Ghostfuckers0910"
-    ) {
-        install(Postgrest)
-    }
-
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,21 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         onBoardingShow.asLiveData().observe(this) { isShow ->
-            if (!isShow && viewModel.getIsActive() == false) {
-                viewModel.setIsActive(true)
-                startActivity(Intent(this, OnBoardingActivity::class.java))
-            }
-            if (viewModel.getIsActive() == false){
-                startActivity(Intent(this, SignInActivity::class.java))
-            }
-        }
-
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.activity_main)
-        if (currentFragment == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.activity_main, MainFragment())
-                .commit()
+            startActivity(Intent(this, OnBoardingActivity::class.java))
         }
     }
 
@@ -101,20 +77,5 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        val onBoardingShow: Flow<Boolean> = applicationContext.dataStore.data
-            .map { preferences ->
-                preferences[Prefs.ONBOARDING_KEY] ?: false
-            }
-
-        onBoardingShow.asLiveData().observe(this) { isShow ->
-            if (isShow) {
-                startActivity(Intent(this, SignInActivity::class.java))
-            }
-        }
-    }
-
 }
 

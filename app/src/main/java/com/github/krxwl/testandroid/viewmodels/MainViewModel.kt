@@ -9,13 +9,6 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
     private val repository = Repository.get()
-    private var isActive = false
-
-    fun setIsActive(value: Boolean) {
-        isActive = value
-    }
-
-    fun getIsActive() = isActive
 
     fun insertFrames() = viewModelScope.launch(Dispatchers.IO) {
         repository.insertFrames(generateFrames())

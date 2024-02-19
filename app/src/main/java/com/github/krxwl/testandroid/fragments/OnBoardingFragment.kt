@@ -2,6 +2,7 @@ package com.github.krxwl.testandroid.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler.Callback
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,14 +46,18 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
         binding.skipBtn.setOnClickListener {
             lifecycleScope.launch {
                 checkedOnBoard()
-                activity?.finish()
             }
         }
 
         binding.signUpBtn.setOnClickListener {
             lifecycleScope.launch {
                 checkedOnBoard()
-                activity?.finish()
+            }
+        }
+
+        binding.signInTextview.setOnClickListener {
+            lifecycleScope.launch {
+                checkedOnBoard()
             }
         }
 
@@ -94,7 +99,6 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
         requireContext().dataStore.edit { preferences ->
             preferences[Prefs.ONBOARDING_KEY] = true
         }
-        activity?.finish()
         clearQueue()
     }
 
