@@ -18,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import com.github.krxwl.testandroid.Prefs
 import com.github.krxwl.testandroid.Prefs.Companion.LAUNCH_KEY
 import com.github.krxwl.testandroid.Prefs.Companion.ONBOARDING_SLIDE
+import com.github.krxwl.testandroid.Prefs.Companion.dataStore
 import com.github.krxwl.testandroid.R
 import com.github.krxwl.testandroid.databinding.OnboardingFragmentBinding
 import com.github.krxwl.testandroid.entities.Frame
@@ -28,8 +29,6 @@ import kotlinx.coroutines.launch
 class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
     lateinit var binding: OnboardingFragmentBinding
     val onBoardingViewModel: OnBoardingViewModel by viewModels()
-
-    val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "onboardingfrag")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,15 +48,15 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
         binding.skipBtn.setOnClickListener {
             lifecycleScope.launch {
                 checkedOnBoard()
+                activity?.finish()
             }
-            activity?.finish()
         }
 
         binding.signUpBtn.setOnClickListener {
             lifecycleScope.launch {
                 checkedOnBoard()
+                activity?.finish()
             }
-            activity?.finish()
         }
         return binding.root
     }
@@ -92,7 +91,7 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
         binding.onboardingImage.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
     }
     suspend fun checkedOnBoard() {
-        context?.dataStore?.edit { preferences ->
+        requireContext().dataStore.edit { preferences ->
             preferences[Prefs.ONBOARDING_KEY] = true
         }
         activity?.finish()
@@ -119,7 +118,7 @@ class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
     }
 
     suspend fun saveSlide() {
-        context?.dataStore?.edit { preferences ->
+        requireContext().dataStore.edit { preferences ->
             preferences[Prefs.ONBOARDING_SLIDE] = onBoardingViewModel.getCurrentFrame()
         }
     }
