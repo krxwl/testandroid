@@ -2,9 +2,12 @@ package com.github.krxwl.testandroid.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import com.github.krxwl.testandroid.Prefs
 import com.github.krxwl.testandroid.Prefs.Companion.dataStore
 import com.github.krxwl.testandroid.R
@@ -13,6 +16,7 @@ import com.github.krxwl.testandroid.entities.Frame
 import com.github.krxwl.testandroid.viewmodels.MainViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     /*val supabase = createSupabaseClient(
@@ -36,9 +40,11 @@ class MainActivity : AppCompatActivity() {
 
         firstLaunch.asLiveData().observe(this) { firstlaunch ->
             if (firstlaunch) {
+                lifecycleScope.launch {
+                    setFirstLaunch()
+                }
                 viewModel.insertFrames()
             }
-
         }
 
         val onBoardingShow: Flow<Boolean> = applicationContext.dataStore.data
@@ -48,9 +54,16 @@ class MainActivity : AppCompatActivity() {
 
 
         onBoardingShow.asLiveData().observe(this) { isShow ->
-            if (!isShow) {
+            if (!isShow && viewModel.getIsActive() == false) {
+                viewModel.setIsActive(true)
                 startActivity(Intent(this, OnBoardingActivity::class.java))
             }
+        }
+    }
+
+    suspend fun setFirstLaunch() {
+        applicationContext.dataStore.edit { prefs ->
+            prefs[Prefs.LAUNCH_KEY] = false
         }
     }
 
