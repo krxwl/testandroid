@@ -1,6 +1,7 @@
 package com.github.krxwl.testandroid.activities
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.github.krxwl.testandroid.R
 import com.github.krxwl.testandroid.databinding.AuthActivityBinding
@@ -11,6 +12,7 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = AuthActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.auth_activity)
         if (currentFragment == null) {
@@ -20,4 +22,10 @@ class AuthActivity : AppCompatActivity() {
                 commit()
         }
     }
+
+    override fun finish() {
+        super.finish()
+        this.finishAffinity()
+    }
+
 }

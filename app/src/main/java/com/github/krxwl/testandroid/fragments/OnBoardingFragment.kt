@@ -2,21 +2,17 @@ package com.github.krxwl.testandroid.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
+import androidx.activity.addCallback
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.github.krxwl.testandroid.Prefs
-import com.github.krxwl.testandroid.Prefs.Companion.LAUNCH_KEY
 import com.github.krxwl.testandroid.Prefs.Companion.ONBOARDING_SLIDE
 import com.github.krxwl.testandroid.Prefs.Companion.dataStore
 import com.github.krxwl.testandroid.R
@@ -26,6 +22,7 @@ import com.github.krxwl.testandroid.viewmodels.OnBoardingViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+
 class OnBoardingFragment : Fragment(R.layout.onboarding_fragment) {
     lateinit var binding: OnboardingFragmentBinding
     val onBoardingViewModel: OnBoardingViewModel by viewModels()
